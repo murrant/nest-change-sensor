@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b7e7da08-541f-456e-946b-b9ff8f5468b5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/tests/DuskTestCase.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/DuskTestCase.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Browser/Components/NestSensors.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Browser/Pages/NestHomePage.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/Browser/SetSensorTest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Browser/ExampleTest.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,6 +126,9 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -179,5 +186,23 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="initial" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="903" y="280" key="#com.intellij.ide.util.MemberChooser" timestamp="1575489789698">
+      <screen x="0" y="0" width="1920" height="1044" />
+    </state>
+    <state x="903" y="280" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1044/1920.0.1920.1080@0.0.1920.1044" timestamp="1575489789698" />
+    <state x="709" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1575487235271">
+      <screen x="0" y="0" width="1920" height="1044" />
+    </state>
+    <state x="709" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1044/1920.0.1920.1080@0.0.1920.1044" timestamp="1575487235271" />
+    <state x="562" y="119" key="CommitChangelistDialog2" timestamp="1575481822583">
+      <screen x="0" y="0" width="1920" height="1044" />
+    </state>
+    <state x="562" y="119" key="CommitChangelistDialog2/0.0.1920.1044/1920.0.1920.1080@0.0.1920.1044" timestamp="1575481822583" />
   </component>
 </project>
