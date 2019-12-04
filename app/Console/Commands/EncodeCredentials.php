@@ -40,7 +40,7 @@ class EncodeCredentials extends Command
     {
         $this->warn('Note: this hides the email and password, but they are easily accessible.  This is not secure password storage.');
         $email = $this->ask('Enter Nest Email:');
-        $password = $this->ask('Enter Nest Password:');
+        $password = $this->secret('Enter Nest Password:');
         $email_env = "NEST_USERNAME=" . encrypt($email);
         $password_env = "NEST_PASSWORD=" . encrypt($password);
 

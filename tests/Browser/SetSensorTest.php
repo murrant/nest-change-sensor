@@ -40,6 +40,7 @@ class SetSensorTest extends DuskTestCase
                     ->type('@nest-username', $username)
                     ->type('@nest-password', $password)
                     ->click('@nest-login-submit')
+                    ->screenshot('after-login')
                     ->waitFor('@nest-menubar', $this->wait);
             } catch (TimeOutException $toe) {
                 $this->fail('Failed to login, check credentials');
