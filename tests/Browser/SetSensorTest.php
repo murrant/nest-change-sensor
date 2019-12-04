@@ -3,6 +3,8 @@
 namespace Tests\Browser;
 
 use Facebook\WebDriver\Exception\TimeOutException;
+use Facebook\WebDriver\Exception\UnexpectedJavascriptException;
+use Illuminate\Support\Str;
 use Laravel\Dusk\Browser;
 use Tests\Browser\Components\NestSensors;
 use Tests\Browser\Pages\NestHomePage;
@@ -39,6 +41,11 @@ class SetSensorTest extends DuskTestCase
                     ->click('@confirm-sensor');
             } catch (TimeOutException $te) {
                 // sensor already selected.
+            } catch (UnexpectedJavascriptException $uje) {
+                if (Str::contains($uje->getMessage(), "Cannot read property 'dispatchEvent' of null")) {
+                    $this->fail('Could not find sensor to set, is NEST_SENSOR_NAME set correctly?');
+                }
+                $this->fail('Failed to set sensor');
             }
 
             $browser->click('@account-menu')
