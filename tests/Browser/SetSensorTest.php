@@ -4,6 +4,7 @@ namespace Tests\Browser;
 
 use Facebook\WebDriver\Exception\TimeOutException;
 use Facebook\WebDriver\Exception\UnexpectedJavascriptException;
+use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Str;
 use Laravel\Dusk\Browser;
 use Tests\Browser\Components\NestSensors;
@@ -12,7 +13,7 @@ use Tests\DuskTestCase;
 
 class SetSensorTest extends DuskTestCase
 {
-    private $wait = 30;
+    private $wait = 20;
 
     /**
      * A Dusk test example.
@@ -22,16 +23,34 @@ class SetSensorTest extends DuskTestCase
     public function testSetUpstairsSensor()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit(new NestHomePage())
-                ->waitFor('@nest-login', $this->wait)
-                ->assertSee('Sign in')
-                ->click('@nest-login')
-                ->waitFor('@nest-username', $this->wait)
-                ->type('@nest-username', decrypt(env('NEST_USERNAME')))
-                ->type('@nest-password', decrypt(env('NEST_PASSWORD')))
-                ->click('@nest-login-submit')
-                ->waitFor('@nest-thermostat', $this->wait)
-                ->click('@nest-thermostat');
+            try {
+                $username = decrypt(env('NEST_USERNAME'));
+                $password = decrypt(env('NEST_PASSWORD'));
+            } catch (DecryptException $decryptException) {
+                $this->fail('NEST_USERNAME and NEST_PASSWORD must be set.  Run php artisan nest:credentials');
+                return;
+            }
+
+            try {
+                $browser->visit(new NestHomePage())
+                    ->waitFor('@nest-login', $this->wait)
+                    ->assertSee('Sign in')
+                    ->click('@nest-login')
+                    ->waitFor('@nest-username', $this->wait)
+                    ->type('@nest-username', $username)
+                    ->type('@nest-password', $password)
+                    ->click('@nest-login-submit')
+                    ->waitFor('@nest-menubar', $this->wait);
+            } catch (TimeOutException $toe) {
+                $this->fail('Failed to login, check credentials');
+            }
+
+            try {
+                $browser->waitFor('@nest-thermostat', $this->wait)
+                    ->click('@nest-thermostat');
+            } catch (TimeOutException $toe) {
+                $this->fail('Could not find thermostat, check NEST_THERMOSTAT');
+            }
 
             try {
                 $browser->within(new NestSensors(), function ($browser) {
@@ -39,7 +58,7 @@ class SetSensorTest extends DuskTestCase
                 })
                     ->waitFor('@confirm-sensor')
                     ->click('@confirm-sensor');
-            } catch (TimeOutException $te) {
+            } catch (TimeOutException $toe) {
                 // sensor already selected.
             } catch (UnexpectedJavascriptException $uje) {
                 if (Str::contains($uje->getMessage(), "Cannot read property 'dispatchEvent' of null")) {

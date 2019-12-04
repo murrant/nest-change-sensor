@@ -9,6 +9,16 @@ To use this:
  * Set credentials with `php artisan nest:credentials --save` *Note password is stored insecurely
  * Run with `NEST_SENSOR_NAME="Upstairs" php artisan dusk` to change the active sensor
 
+## Setup
+
+```bash
+cd /opt
+git clone https://github.com/murrant/nest-change-sensor.git
+cd nest-change-sensor
+composer install
+
+```
+
 ## Variables
 | env var | description |
 |---------|-------------|
@@ -16,3 +26,4 @@ To use this:
 | NEST_PASSWORD | encrypted nest password |
 | NEST_THERMOSTAT | nest thermostat id (if multiple) |
 | NEST_SENSOR_NAME | nest sensor name to activate as shown on the website |
+| NEST_HEADLESS | set to false to show the Chrome window onscreen |

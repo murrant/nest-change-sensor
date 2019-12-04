@@ -39,6 +39,7 @@ class NestHomePage extends Page
             '@nest-username' => '[data-test=input-email]',
             '@nest-password' => '[data-test=input-password]',
             '@nest-login-submit' => '[data-test=button-login-submit]',
+            '@nest-menubar' => 'div[role=menubar]',
             '@nest-thermostat' => env('NEST_THERMOSTAT') ? "a[href='/thermostat/" . env('NEST_THERMOSTAT') . "']" : 'li.puck-item > a',
             '@confirm-sensor' => '[data-test=kryptonite-sensor-schedule-override-alert-confirm-button]',
             '@close-thermostat' => '[data-test=thermozilla-header-back-button]',
